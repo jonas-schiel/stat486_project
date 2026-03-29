@@ -43,8 +43,25 @@ The table below presents descriptive statistics for the three primary variables 
 
 **SPY Price:** The wide range in SPY price ($49.81 to $463.92) and high standard deviation ($112.48) reflect long-term market appreciation over the 20-year window rather than volatility. This is why daily returns are used instead.
 
-**SPY Daily Return:** The mean daily return of 0.000438 (~0.04%) is consistent with historical U.S. equity market performance, compounding to approximately 11% annually. The minimum single-day return of -10.94% and maximum of +14.52% are both consistent with the extreme volatility observed during the COVID-19 market crash in March 2020.
-
 ### Categorical Variable
 
-**High VIX Days:** One of the most important classification variables used in 
+**High VIX Days:** One of the most important classification variables that will be used in my project is whether a day is considered a high VIX day or not. A high VIX day is labeled with a 1 when VIX is at or above 30. The minority class of this feature makes of roughly 9% of the observations with 4718 total observations, 434 of which are in the minority class and 4,284 in the majority class.
+
+
+## Visual Exploration
+
+### plot 1
+
+![VIX plot](../visualizations/vix_crisis.png)
+
+This plot highlights time frames in which a market anomoly was experienced, as well as the VIX at closing, and a threshold indicating whether VIX is considered high or not. This plot helps to give an idea of how influental both VIX and the high VIX indicator will be in determining whether the market is in crisis or not. Looking at the graph, it does appear that crises are more likely when VIF is above 30 at close.
+
+### Plot 2
+
+![SPY Drawdown plot](../visualizations/spy_drawdown.png)
+
+Similar to the plot above, this plot shows the SPY drawdown using a 252 day peak, plotted against the last 20 years with market anomalies highlighted in yellow. Drawdowns are calculated by taking the difference between a daily high minus the rolling high, dividing that by the rolling high, and then multiplying by 100. They capture market performance trends and as we can see by looking at the graph, will likely be the most important featurein predicting market anomalies.
+
+## Challenges
+
+Just based off of this breif EDA project, as well as what I have learned about machine learning methods, the biggest challlenge to my project will be handling class imbalance. There will be a pretty significant imbalance between crisis days and normal days. This can be combatted using methods such as SMOTE to try and get a better class balance in Random Forest classification. 
