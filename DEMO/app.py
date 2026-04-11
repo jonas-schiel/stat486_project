@@ -77,7 +77,7 @@ prob = probs[idx]
 predicted = 'CRISIS' if prob >= 0.5 else 'NORMAL'
 actual = 'Crisis' if y[idx] == 1 else 'Normal'
 
-col1, col2, col3 = st.columns(4)
+col1, col2, col3 = st.columns(3)
 col1.metric('Crisis Probability', f'{prob:.1%}')
 col2.metric('Model Prediction', predicted)
 col3.metric('Actual Label', actual)
