@@ -40,7 +40,7 @@ features = ['Vix', 'VIX_roll_10', 'VIX_roll_20', 'VIX_day_change', 'VIX_sd',
 y = data['market_crisis'].reset_index(drop=True)
 dates = data['Date'].reset_index(drop=True)
 
-calibrated_model = CalibratedClassifierCV(model, cv='prefit', method='isotonic')
+calibrated_model = CalibratedClassifierCV(model, cv=5, method='isotonic')
 calibrated_model.fit(data[features].values, y)
 
 crisis_periods = [
