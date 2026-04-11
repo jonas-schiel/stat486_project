@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 import yfinance as yf
 from datetime import datetime, timedelta
+import os
 
 st.set_page_config(page_title="Market Crisis Detector", layout="wide")
 st.title("Market Crisis Detection — Gradient Boosting")
@@ -12,11 +12,15 @@ st.write("Anomaly prediction model trained on 2005–2024 market")
 
 @st.cache_resource
 def load_model():
-    return pickle.load(open('../analysis/models/best_mod/best_model.pkl', 'rb'))
+    base = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(base, '..', 'analysis', 'models', 'best_mod', 'best_model.pkl')
+    return pickle.load(open(path, 'rb'))
 
 @st.cache_data
 def load_data():
-    data = pd.read_csv('../data/marketdata.csv')
+    base = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(base, '..', 'data', 'marketdata.csv')
+    data = pd.read_csv(path)
     data['Date'] = pd.to_datetime(data['Date'])
     return data
 
