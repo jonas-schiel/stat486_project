@@ -10,7 +10,7 @@ import os
 
 st.set_page_config(page_title="Market Crisis Detector", layout="wide")
 st.title("Market Crisis Detection — Gradient Boosting")
-st.write("Anomaly prediction model trained on 2005–2024 market")
+st.write("Anomaly prediction model trained on 2005–2024 market data")
 
 @st.cache_resource
 def load_model():
