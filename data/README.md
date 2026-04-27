@@ -51,11 +51,6 @@ df.to_csv("data/raw/market_data.csv")
 **Features and Target:**
 | Column | Description |
 |--------|-------------|
-| **VIX** | Daily closing value of the CBOE Volatility Index |
-| **VIX_roll_10** | 10-day rolling mean of VIX close |
-| **VIX_roll_20** | 20-day rolling mean of VIX close |
-| **VIX_day_change** | Day-over-day change in VIX close |
-| **VIX_sd** | 30-day rolling standard deviation of VIX close |
 | **SPY_roll_10** | 10-day rolling standard deviation of SPY close |
 | **SPY_roll_20** | 20-day rolling standard deviation of SPY close |
 | **SPY_roll_60** | 60-day rolling standard deviation of SPY close |
@@ -72,7 +67,6 @@ df.to_csv("data/raw/market_data.csv")
 | **SPY_TLT_corr_20** | 20-day rolling correlation between SPY and TLT returns |
 | **SPY_TLT_corr_60** | 60-day rolling correlation between SPY and TLT returns |
 | **SPY_GLD_corr_20** | 20-day rolling correlation between SPY and GLD returns |
-| **SPY_VIX_corr_20** | 20-day rolling correlation between SPY returns and VIX daily change |
 | **SPY_vol_ratio** | SPY daily volume relative to its 20-day average volume |
 | **QQQ_vol_ratio** | QQQ daily volume relative to its 20-day average volume |
 | **IWM_vol_ratio** | IWM daily volume relative to its 20-day average volume |

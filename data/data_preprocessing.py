@@ -9,17 +9,11 @@ tickers = ["SPY", "^VIX", "QQQ", "IWM", "GLD", "TLT"]
 df = yf.download(tickers, start="2005-01-01", end="2024-01-01", interval="1d")
 
 #Creating Features
-
 close = df['Close']
 vol = df['Volume']
 feature_df = pd.DataFrame(index=close.index)
 
-## Volatility Features
-feature_df['Vix'] = close['^VIX']
-feature_df['VIX_roll_10'] = close['^VIX'].rolling(window=10, min_periods=1).mean()
-feature_df['VIX_roll_20'] = close['^VIX'].rolling(window=20, min_periods=1).mean()
-feature_df['VIX_day_change'] = close['^VIX'].diff()
-feature_df['VIX_sd'] = close['^VIX'].rolling(window=30).std()
+## Rolling means
 feature_df['SPY_roll_10'] = close['SPY'].rolling(window=10, min_periods=1).std()
 feature_df['SPY_roll_20'] = close['SPY'].rolling(window=20, min_periods=1).std()
 feature_df['SPY_roll_60'] = close['SPY'].rolling(window=60, min_periods=1).std()
@@ -46,12 +40,11 @@ feature_df['IWM_drawdown'] = (close["IWM"] - IWM_rolling_max) / IWM_rolling_max 
 spy_return = close['SPY'].pct_change()
 tlt_return = close['TLT'].pct_change()
 gld_return = close['GLD'].pct_change()
-vix_change = close['^VIX'].diff()
+
 
 feature_df['SPY_TLT_corr_20'] = spy_return.rolling(window=20).corr(tlt_return)
 feature_df['SPY_TLT_corr_60'] = spy_return.rolling(window=60).corr(tlt_return)
 feature_df['SPY_GLD_corr_20'] = spy_return.rolling(window=20).corr(gld_return)
-feature_df['SPY_VIX_corr_20'] = spy_return.rolling(window=20).corr(vix_change)
 
 ## Volume
 feature_df['SPY_vol_ratio'] = vol['SPY'] / vol['SPY'].rolling(window=20).mean()
@@ -63,12 +56,13 @@ feature_df['IWM_vol_ratio'] = vol['IWM'] / vol['IWM'].rolling(window=20).mean()
 spy_moving_avg = close['SPY'].rolling(window=200).mean()
 feature_df['spy_above_avg'] =  (close['SPY'] > spy_moving_avg).astype(int)
 
-## Target
-crisis = (close['^VIX'] > 30)
-feature_df['market_crisis'] = crisis.shift(-20).astype(int)
+## Target 
+target = (close['^VIX'] > 30).shift(-20)
+feature_df['market_crisis'] = target
 
+feature_df = feature_df.dropna()                
+feature_df['market_crisis'] = feature_df['market_crisis'].astype(int)
 
-feature_df.dropna()
 feature_df.to_csv("data/marketdata.csv")
 
 

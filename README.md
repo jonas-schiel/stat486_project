@@ -23,11 +23,13 @@ Can a market crisis be predicted before it happens? This project uses market dat
 
 ## Results
 
-Gradient Boosting produced the best results, with a test accuracy of 97.8% (inflated due to class imbalance), and a minority class f1-score of 0.88, with 91% precision, 84% recall, and a support of 88. Random forest produced similar results with a test accuracy of 97.2% (imbalanced), and a minority class f1-score of 0.85, with 89% precision, 81% recall, and a support of 88.
+Gradient Boosting produced the best results, with a test accuracy of 97.8% (inflated due to class imbalance), and a minority class f1-score of 0.87, with 92% precision, 82% recall, and a support of 88.
 
-The Isolation Forest model demonstrated a reasonable ability to detect active market crashes without the use of labeled data during training. Following feature selection based on permutation importance and hyperparameter optimization, the final model achieved a ROC-AUC score of 0.815 and a macro average F1 score of 0.75. While performance falls short of the supervised models, this is expected given that the Isolation Forest had no access to crisis labels during training. The model's ability to capture genuine market anomalies unsupervised represents a meaningful result and a useful complement to the supervised approaches.
+The Isolation Forest model demonstrated a reasonable ability to detect active market crashes without the use of labeled data during training. Following feature selection based on permutation importance and hyperparameter optimization, the final model achieved a ROC-AUC score of 0.788. While performance falls short of the supervised models, this is expected given that the Isolation Forest had no access to crisis labels during training. The model's ability to capture genuine market anomalies unsupervised represents a meaningful result and a useful complement to the supervised approaches.
 
 ## StreamLit App Link: [here](https://market-crisis-detection.streamlit.app)
+
+![Anomaly vs. Market Crashes](../analysis/visualizations/IF_ML/reduced_anomalygraph.png)
 
 ## Repo Structure
 
